@@ -1,0 +1,17 @@
+{
+  "name": "Construtor CoC",
+  "short_name": "Construtor CoC",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#12161f",
+  "theme_color": "#12161f",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
