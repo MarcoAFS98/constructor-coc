@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#12161f">
+  <title>Construtor CoC</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <style>
+    :root {
+      --bg-dark: #12161f;
+      --card-bg: #1c2331;
+      --accent-gold: #ffb703;
+      --accent-gold-hover: #ffa200;
+      --accent-green: #52b788;
+      --accent-green-bright: #74c69d;
+      --text-main: #f8f9fa;
+      --text-sub: #a0aec0;
+      --border-color: #2a3447;
+      --input-bg: #151a24;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 16px;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 450px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 16px;
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+    }
+
+    .logo {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #d4a373, #ffb703);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    }
+
+    .header-titles h1 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .header-titles p {
+      font-size: 0.8rem;
+      color: var(--text-sub);
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .section-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--accent-gold);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .toggle-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--input-bg);
+      padding: 4px;
+      border-radius: 12px;
+      border: 1px solid var(--border-color);
+    }
+
+    .toggle-btn {
+      background: transparent;
+      border: none;
+      color: var(--text-sub);
+      padding: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .toggle-btn.active {
+      background: var(--card-bg);
+      color: var(--accent-gold);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .time-inputs {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .input-field {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .input-field label {
+      font-size: 0.75rem;
+      color: var(--text-sub);
+      text-align: center;
+    }
+
+    .input-field input {
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      padding: 10px;
+      color: var(--text-main);
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-align: center;
+      width: 100%;
+      outline: none;
+    }
+
+    .input-field input:focus {
+      border-color: var(--accent-gold);
+    }
+
+    .preset-chips {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .chip {
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-sub);
+      padding: 6px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .chip:active {
+      background: var(--accent-gold);
+      color: #000;
+    }
+
+    .result-card {
+      background: linear-gradient(180deg, #1e293b, #0f172a);
+      border: 1px solid var(--accent-green);
+      border-radius: 16px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .result-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-green-bright);
+    }
+
+    .result-time {
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #fff;
+    }
+
+    .result-date {
+      font-size: 1rem;
+      color: var(--text-sub);
+    }
+
+    .result-badge {
+      background: rgba(82, 183, 136, 0.15);
+      color: var(--accent-green-bright);
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 4px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="app-container">
+    <header>
+      <div class="logo">🔨</div>
+      <div class="header-titles">
+        <h1>Construtor CoC</h1>
+        <p>Calculadora de Obras & Melhorias</p>
+      </div>
+    </header>
+
+    <div class="card">
+      <span class="section-title">1. Quando vai iniciar?</span>
+      <div class="toggle-group">
+        <button class="toggle-btn active" id="btn-now" onclick="setMode('now')">Agora</button>
+        <button class="toggle-btn" id="btn-custom" onclick="setMode('custom')">Programar</button>
+      </div>
+
+      <div class="input-field" id="custom-time-container" style="display: none;">
+        <label for="start-time">Horário de Início</label>
+        <input type="datetime-local" id="start-time" onchange="calculate()">
+      </div>
+    </div>
+
+    <div class="card">
+      <span class="section-title">2. Tempo de Construção</span>
+      
+      <div class="preset-chips">
+        <button class="chip" onclick="setPreset(12,0,0)">12 horas</button>
+        <button class="chip" onclick="setPreset(24,0,0)">1 dia</button>
+        <button class="chip" onclick="setPreset(72,0,0)">3 dias</button>
+        <button class="chip" onclick="setPreset(168,0,0)">7 dias</button>
+        <button class="chip" onclick="setPreset(336,0,0)">14 dias</button>
+      </div>
+
+      <div class="time-inputs">
+        <div class="input-field">
+          <label>Horas</label>
+          <input type="number" id="duration-h" value="10" min="0" oninput="calculate()">
+        </div>
+        <div class="input-field">
+          <label>Minutos</label>
+          <input type="number" id="duration-m" value="0" min="0" max="59" oninput="calculate()">
+        </div>
+        <div class="input-field">
+          <label>Segundos</label>
+          <input type="number" id="duration-s" value="0" min="0" max="59" oninput="calculate()">
+        </div>
+      </div>
+    </div>
+
+    <div class="result-card">
+      <span class="result-label">Término Previsto</span>
+      <div class="result-time" id="res-time">--:--:--</div>
+      <div class="result-date" id="res-date">A calcular...</div>
+      <div class="result-badge" id="res-badge">Aguardando dados</div>
+    </div>
+  </div>
+
+  <script>
+    let mode = 'now';
+
+    function setMode(newMode) {
+      mode = newMode;
+      document.getElementById('btn-now').classList.toggle('active', mode === 'now');
+      document.getElementById('btn-custom').classList.toggle('active', mode === 'custom');
+      document.getElementById('custom-time-container').style.display = mode === 'custom' ? 'flex' : 'none';
+      
+      if(mode === 'custom' && !document.getElementById('start-time').value) {
+        const now = new Date();
+        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+        document.getElementById('start-time').value = now.toISOString().slice(0,16);
+      }
+      calculate();
+    }
+
+    function setPreset(h, m, s) {
+      document.getElementById('duration-h').value = h;
+      document.getElementById('duration-m').value = m;
+      document.getElementById('duration-s').value = s;
+      calculate();
+    }
+
+    function calculate() {
+      let startTime = new Date();
+      if (mode === 'custom') {
+        const customVal = document.getElementById('start-time').value;
+        if (customVal) startTime = new Date(customVal);
+      }
+
+      const h = parseInt(document.getElementById('duration-h').value) || 0;
+      const m = parseInt(document.getElementById('duration-m').value) || 0;
+      const s = parseInt(document.getElementById('duration-s').value) || 0;
+
+      const totalMs = ((h * 3600) + (m * 60) + s) * 1000;
+      const endTime = new Date(startTime.getTime() + totalMs);
+
+      const timeStr = endTime.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      const dateStr = endTime.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long' });
+
+      document.getElementById('res-time').innerText = timeStr;
+      document.getElementById('res-date').innerText = dateStr;
+
+      const startZero = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate());
+      const endZero = new Date(endTime.getFullYear(), endTime.getMonth(), endTime.getDate());
+      const diffDays = Math.round((endZero - startZero) / (1000 * 60 * 60 * 24));
+
+      let badgeText = "Hoje";
+      if (diffDays === 1) badgeText = "Amanhã";
+      else if (diffDays > 1) badgeText = `Em ${diffDays} dias`;
+
+      document.getElementById('res-badge').innerText = badgeText;
+    }
+
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('sw.js')
+          .then(reg => console.log('SW registado com sucesso!'))
+          .catch(err => console.log('Falha ao registar SW:', err));
+      });
+    }
+
+    calculate();
+    setInterval(() => { if(mode === 'now') calculate(); }, 1000);
+  </script>
+</body>
+</html>
