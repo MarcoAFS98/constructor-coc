@@ -12,13 +12,13 @@
       --bg-dark: #12161f;
       --card-bg: #1c2331;
       --accent-gold: #ffb703;
-      --accent-gold-hover: #ffa200;
       --accent-green: #52b788;
       --accent-green-bright: #74c69d;
       --text-main: #f8f9fa;
       --text-sub: #a0aec0;
       --border-color: #2a3447;
       --input-bg: #151a24;
+      --danger-color: #e63946;
     }
 
     * {
@@ -71,7 +71,6 @@
     .header-titles h1 {
       font-size: 1.1rem;
       font-weight: 700;
-      color: var(--text-main);
     }
 
     .header-titles p {
@@ -115,19 +114,57 @@
       font-weight: 600;
       border-radius: 8px;
       cursor: pointer;
-      transition: all 0.2s ease;
     }
 
     .toggle-btn.active {
       background: var(--card-bg);
       color: var(--accent-gold);
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+    }
+
+    .preset-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .btn-clear {
+      background: rgba(230, 57, 70, 0.15);
+      color: var(--danger-color);
+      border: 1px solid rgba(230, 57, 70, 0.3);
+      padding: 4px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    .preset-chips {
+      display: flex;
+      gap: 6px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .chip {
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      color: var(--text-sub);
+      padding: 8px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    .chip:active {
+      background: var(--accent-gold);
+      color: #000;
     }
 
     .time-inputs {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
     }
 
     .input-field {
@@ -146,40 +183,13 @@
       background: var(--input-bg);
       border: 1px solid var(--border-color);
       border-radius: 10px;
-      padding: 10px;
+      padding: 10px 4px;
       color: var(--text-main);
       font-size: 1.1rem;
       font-weight: 600;
       text-align: center;
       width: 100%;
       outline: none;
-    }
-
-    .input-field input:focus {
-      border-color: var(--accent-gold);
-    }
-
-    .preset-chips {
-      display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 4px;
-    }
-
-    .chip {
-      background: var(--input-bg);
-      border: 1px solid var(--border-color);
-      color: var(--text-sub);
-      padding: 6px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      white-space: nowrap;
-    }
-
-    .chip:active {
-      background: var(--accent-gold);
-      color: #000;
     }
 
     .result-card {
@@ -219,7 +229,6 @@
       border-radius: 12px;
       font-size: 0.8rem;
       font-weight: 600;
-      margin-top: 4px;
     }
   </style>
 </head>
@@ -248,20 +257,30 @@
     </div>
 
     <div class="card">
-      <span class="section-title">2. Tempo de Construção</span>
+      <div class="preset-header">
+        <span class="section-title">2. Tempo de Construção</span>
+        <button class="btn-clear" onclick="clearDuration()">Zerar</button>
+      </div>
       
       <div class="preset-chips">
-        <button class="chip" onclick="setPreset(12,0,0)">12 horas</button>
-        <button class="chip" onclick="setPreset(24,0,0)">1 dia</button>
-        <button class="chip" onclick="setPreset(72,0,0)">3 dias</button>
-        <button class="chip" onclick="setPreset(168,0,0)">7 dias</button>
-        <button class="chip" onclick="setPreset(336,0,0)">14 dias</button>
+        <button class="chip" onclick="addPreset(0, 0, 10, 0)">+10m</button>
+        <button class="chip" onclick="addPreset(0, 1, 0, 0)">+1h</button>
+        <button class="chip" onclick="addPreset(0, 6, 0, 0)">+6h</button>
+        <button class="chip" onclick="addPreset(0, 12, 0, 0)">+12h</button>
+        <button class="chip" onclick="addPreset(1, 0, 0, 0)">+1 dia</button>
+        <button class="chip" onclick="addPreset(3, 0, 0, 0)">+3 dias</button>
+        <button class="chip" onclick="addPreset(7, 0, 0, 0)">+7 dias</button>
+        <button class="chip" onclick="addPreset(14, 0, 0, 0)">+14 dias</button>
       </div>
 
       <div class="time-inputs">
         <div class="input-field">
+          <label>Dias</label>
+          <input type="number" id="duration-d" value="0" min="0" oninput="calculate()">
+        </div>
+        <div class="input-field">
           <label>Horas</label>
-          <input type="number" id="duration-h" value="10" min="0" oninput="calculate()">
+          <input type="number" id="duration-h" value="0" min="0" oninput="calculate()">
         </div>
         <div class="input-field">
           <label>Minutos</label>
@@ -299,10 +318,25 @@
       calculate();
     }
 
-    function setPreset(h, m, s) {
-      document.getElementById('duration-h').value = h;
-      document.getElementById('duration-m').value = m;
-      document.getElementById('duration-s').value = s;
+    function addPreset(d, h, m, s) {
+      const currentD = parseInt(document.getElementById('duration-d').value) || 0;
+      const currentH = parseInt(document.getElementById('duration-h').value) || 0;
+      const currentM = parseInt(document.getElementById('duration-m').value) || 0;
+      const currentS = parseInt(document.getElementById('duration-s').value) || 0;
+
+      document.getElementById('duration-d').value = currentD + d;
+      document.getElementById('duration-h').value = currentH + h;
+      document.getElementById('duration-m').value = currentM + m;
+      document.getElementById('duration-s').value = currentS + s;
+
+      calculate();
+    }
+
+    function clearDuration() {
+      document.getElementById('duration-d').value = 0;
+      document.getElementById('duration-h').value = 0;
+      document.getElementById('duration-m').value = 0;
+      document.getElementById('duration-s').value = 0;
       calculate();
     }
 
@@ -313,11 +347,12 @@
         if (customVal) startTime = new Date(customVal);
       }
 
+      const d = parseInt(document.getElementById('duration-d').value) || 0;
       const h = parseInt(document.getElementById('duration-h').value) || 0;
       const m = parseInt(document.getElementById('duration-m').value) || 0;
       const s = parseInt(document.getElementById('duration-s').value) || 0;
 
-      const totalMs = ((h * 3600) + (m * 60) + s) * 1000;
+      const totalMs = ((d * 86400) + (h * 3600) + (m * 60) + s) * 1000;
       const endTime = new Date(startTime.getTime() + totalMs);
 
       const timeStr = endTime.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
@@ -339,9 +374,7 @@
 
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js')
-          .then(reg => console.log('SW registado com sucesso!'))
-          .catch(err => console.log('Falha ao registar SW:', err));
+        navigator.serviceWorker.register('sw.js').catch(err => console.log('SW err:', err));
       });
     }
 
