@@ -19,7 +19,6 @@
       --border-color: #2a3447;
       --input-bg: #151a24;
       --danger-color: #e63946;
-      --warning-color: #ffb703;
     }
 
     * {
@@ -89,10 +88,10 @@
       background: var(--input-bg);
       border: 1px solid var(--accent-gold);
       color: var(--accent-gold);
-      padding: 6px 10px;
+      padding: 8px 12px;
       border-radius: 10px;
-      font-size: 0.75rem;
-      font-weight: 600;
+      font-size: 0.8rem;
+      font-weight: 700;
       cursor: pointer;
     }
 
@@ -112,149 +111,74 @@
       color: var(--accent-gold);
       text-transform: uppercase;
       letter-spacing: 0.5px;
-    }
-
-    .toggle-group {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      background: var(--input-bg);
-      padding: 4px;
-      border-radius: 12px;
-      border: 1px solid var(--border-color);
-    }
-
-    .toggle-btn {
-      background: transparent;
-      border: none;
-      color: var(--text-sub);
-      padding: 10px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    .toggle-btn.active {
-      background: var(--card-bg);
-      color: var(--accent-gold);
-    }
-
-    .preset-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .btn-clear {
-      background: rgba(230, 57, 70, 0.15);
-      color: var(--danger-color);
-      border: 1px solid rgba(230, 57, 70, 0.3);
-      padding: 4px 10px;
-      border-radius: 12px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-    }
-
-    .preset-chips {
+    /* Estilos da Lista de Construtores */
+    .builder-list {
       display: flex;
-      gap: 6px;
-      overflow-x: auto;
-      padding-bottom: 4px;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    .chip {
+    .builder-card {
       background: var(--input-bg);
       border: 1px solid var(--border-color);
-      color: var(--text-sub);
-      padding: 8px 12px;
-      border-radius: 20px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      white-space: nowrap;
+      border-radius: 12px;
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
 
-    .chip:active {
-      background: var(--accent-gold);
-      color: #000;
-    }
-
-    .time-inputs {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-    }
-
-    .input-field {
+    .builder-info {
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
-    .input-field label {
-      font-size: 0.75rem;
-      color: var(--text-sub);
-      text-align: center;
-    }
-
-    .input-field input {
-      background: var(--input-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 10px;
-      padding: 10px 4px;
+    .builder-title {
+      font-size: 0.9rem;
+      font-weight: 700;
       color: var(--text-main);
-      font-size: 1.1rem;
-      font-weight: 600;
-      text-align: center;
-      width: 100%;
-      outline: none;
     }
 
-    .result-card {
-      background: linear-gradient(180deg, #1e293b, #0f172a);
-      border: 1px solid var(--accent-green);
-      border-radius: 16px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 8px;
-      text-align: center;
-    }
-
-    .result-label {
+    .builder-meta {
       font-size: 0.75rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      color: var(--accent-green-bright);
-    }
-
-    .result-time {
-      font-size: 2.2rem;
-      font-weight: 800;
-      color: #fff;
-    }
-
-    .result-date {
-      font-size: 1rem;
       color: var(--text-sub);
     }
 
-    .result-badge {
-      background: rgba(82, 183, 136, 0.15);
-      color: var(--accent-green-bright);
-      padding: 4px 12px;
-      border-radius: 12px;
-      font-size: 0.8rem;
-      font-weight: 600;
+    .builder-time-group {
+      text-align: right;
     }
+
+    .builder-end-time {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: var(--accent-gold);
+    }
+
+    .builder-badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .badge-night { background: rgba(230, 57, 70, 0.2); color: #e63946; }
+    .badge-ideal { background: rgba(82, 183, 136, 0.2); color: #74c69d; }
+    .badge-day { background: rgba(255, 183, 3, 0.2); color: #ffb703; }
 
     /* Modal JSON */
     .modal {
       display: none;
       position: fixed;
       top: 0; left: 0; width: 100%; height: 100%;
-      background: rgba(0,0,0,0.8);
+      background: rgba(0,0,0,0.85);
       justify-content: center;
       align-items: center;
       padding: 16px;
@@ -267,7 +191,7 @@
       border-radius: 16px;
       padding: 16px;
       width: 100%;
-      max-width: 400px;
+      max-width: 420px;
       display: flex;
       flex-direction: column;
       gap: 12px;
@@ -275,13 +199,14 @@
 
     .modal-content textarea {
       width: 100%;
-      height: 120px;
+      height: 140px;
       background: var(--input-bg);
       border: 1px solid var(--border-color);
       color: var(--text-main);
       border-radius: 10px;
-      padding: 8px;
+      padding: 10px;
       font-size: 0.8rem;
+      outline: none;
     }
 
     .modal-actions {
@@ -310,212 +235,154 @@
         <div class="logo">🔨</div>
         <div class="header-titles">
           <h1>Construtor CoC</h1>
-          <p>Calculadora de Obras & Melhorias</p>
+          <p>Gestor de Obras & Timers JSON</p>
         </div>
       </div>
-      <button class="btn-json" onclick="openJsonModal()">📥 JSON</button>
+      <button class="btn-json" onclick="openJsonModal()">📥 Ler JSON</button>
     </header>
 
     <div class="card">
-      <span class="section-title">1. Quando vai iniciar?</span>
-      <div class="toggle-group">
-        <button class="toggle-btn active" id="btn-now" onclick="setMode('now')">Agora</button>
-        <button class="toggle-btn" id="btn-custom" onclick="setMode('custom')">Programar</button>
-      </div>
-
-      <div class="input-field" id="custom-time-container" style="display: none;">
-        <label for="start-time">Horário de Início</label>
-        <input type="datetime-local" id="start-time" onchange="calculate()">
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="preset-header">
-        <span class="section-title">2. Tempo de Construção</span>
-        <button class="btn-clear" onclick="clearDuration()">Zerar</button>
+      <div class="section-title">
+        <span>🔨 Construtores & Pesquisas Ativas</span>
+        <span id="active-count" style="font-size:0.75rem; color:var(--text-sub);">(0 encontradas)</span>
       </div>
       
-      <div class="preset-chips">
-        <button class="chip" onclick="addPreset(0, 0, 10, 0)">+10m</button>
-        <button class="chip" onclick="addPreset(0, 1, 0, 0)">+1h</button>
-        <button class="chip" onclick="addPreset(0, 6, 0, 0)">+6h</button>
-        <button class="chip" onclick="addPreset(0, 12, 0, 0)">+12h</button>
-        <button class="chip" onclick="addPreset(1, 0, 0, 0)">+1 dia</button>
-        <button class="chip" onclick="addPreset(3, 0, 0, 0)">+3 dias</button>
-        <button class="chip" onclick="addPreset(7, 0, 0, 0)">+7 dias</button>
-        <button class="chip" onclick="addPreset(14, 0, 0, 0)">+14 dias</button>
-      </div>
-
-      <div class="time-inputs">
-        <div class="input-field">
-          <label>Dias</label>
-          <input type="number" id="duration-d" value="0" min="0" oninput="calculate()">
-        </div>
-        <div class="input-field">
-          <label>Horas</label>
-          <input type="number" id="duration-h" value="0" min="0" oninput="calculate()">
-        </div>
-        <div class="input-field">
-          <label>Minutos</label>
-          <input type="number" id="duration-m" value="0" min="0" max="59" oninput="calculate()">
-        </div>
-        <div class="input-field">
-          <label>Segundos</label>
-          <input type="number" id="duration-s" value="0" min="0" max="59" oninput="calculate()">
+      <div id="builder-list-container" class="builder-list">
+        <div style="text-align: center; color: var(--text-sub); padding: 20px 0; font-size: 0.85rem;">
+          Nenhuma obra importada.<br>Clique em <b>📥 Ler JSON</b> para colar os dados do jogo!
         </div>
       </div>
-    </div>
-
-    <div class="result-card">
-      <span class="result-label">Término Previsto</span>
-      <div class="result-time" id="res-time">--:--:--</div>
-      <div class="result-date" id="res-date">A calcular...</div>
-      <div class="result-badge" id="res-badge">Aguardando dados</div>
-      <div class="result-badge" id="res-ai-badge" style="display:none; margin-top: 4px;"></div>
     </div>
   </div>
 
   <!-- Modal JSON -->
   <div class="modal" id="json-modal">
     <div class="modal-content">
-      <span class="section-title">Importar Dados JSON</span>
-      <p style="font-size:0.8rem; color:var(--text-sub);">Cole o código JSON do jogo para carregar o timer ativo:</p>
-      <textarea id="json-input" placeholder='{"buildings": [...]}'></textarea>
+      <span class="section-title">Importar Dados da Vila</span>
+      <p style="font-size:0.8rem; color:var(--text-sub);">Cole o código JSON exportado do jogo para ler todas as obras:</p>
+      <textarea id="json-input" placeholder='{"buildings": [...], "units": [...]}'></textarea>
       <div class="modal-actions">
         <button class="modal-btn modal-btn-cancel" onclick="closeJsonModal()">Cancelar</button>
-        <button class="modal-btn modal-btn-confirm" onclick="importJSON()">Importar</button>
+        <button class="modal-btn modal-btn-confirm" onclick="importJSON()">Ler Obras</button>
       </div>
     </div>
   </div>
 
   <script>
-    let mode = 'now';
+    // Dicionário de mapeamento dos IDs principais
+    const BUILDING_NAMES = {
+      1000007: "Estrutura Especial",
+      1000071: "Acampamento / Edifício Sombrio",
+      1000003: "Quartel Sombrio",
+      1000005: "Quartel Sombrio",
+      1000059: "Fábrica de Feitiços Sombrios",
+      1000034: "Torre de Arqueria (Base)",
+      1000036: "Canhão Duplo (Base)",
+      1000042: "Posto da Guarda (Base)",
+      4000005: "Laboratório: Mago",
+      4000034: "Laboratório Base: Servo",
+      28000006: "Evolução: Grande Guardião"
+    };
 
-    function setMode(newMode) {
-      mode = newMode;
-      document.getElementById('btn-now').classList.toggle('active', mode === 'now');
-      document.getElementById('btn-custom').classList.toggle('active', mode === 'custom');
-      document.getElementById('custom-time-container').style.display = mode === 'custom' ? 'flex' : 'none';
-      
-      if(mode === 'custom' && !document.getElementById('start-time').value) {
-        const now = new Date();
-        now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
-        document.getElementById('start-time').value = now.toISOString().slice(0,16);
-      }
-      calculate();
-    }
-
-    function addPreset(d, h, m, s) {
-      const currentD = parseInt(document.getElementById('duration-d').value) || 0;
-      const currentH = parseInt(document.getElementById('duration-h').value) || 0;
-      const currentM = parseInt(document.getElementById('duration-m').value) || 0;
-      const currentS = parseInt(document.getElementById('duration-s').value) || 0;
-
-      document.getElementById('duration-d').value = currentD + d;
-      document.getElementById('duration-h').value = currentH + h;
-      document.getElementById('duration-m').value = currentM + m;
-      document.getElementById('duration-s').value = currentS + s;
-
-      calculate();
-    }
-
-    function clearDuration() {
-      document.getElementById('duration-d').value = 0;
-      document.getElementById('duration-h').value = 0;
-      document.getElementById('duration-m').value = 0;
-      document.getElementById('duration-s').value = 0;
-      calculate();
-    }
-
-    function calculate() {
-      let startTime = new Date();
-      if (mode === 'custom') {
-        const customVal = document.getElementById('start-time').value;
-        if (customVal) startTime = new Date(customVal);
-      }
-
-      const d = parseInt(document.getElementById('duration-d').value) || 0;
-      const h = parseInt(document.getElementById('duration-h').value) || 0;
-      const m = parseInt(document.getElementById('duration-m').value) || 0;
-      const s = parseInt(document.getElementById('duration-s').value) || 0;
-
-      const totalMs = ((d * 86400) + (h * 3600) + (m * 60) + s) * 1000;
-      const endTime = new Date(startTime.getTime() + totalMs);
-
-      const timeStr = endTime.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
-      const dateStr = endTime.toLocaleDateString('pt-BR', { weekday: 'long', day: '2-digit', month: 'long' });
-
-      document.getElementById('res-time').innerText = timeStr;
-      document.getElementById('res-date').innerText = dateStr;
-
-      const startZero = new Date(startTime.getFullYear(), startTime.getMonth(), startTime.getDate());
-      const endZero = new Date(endTime.getFullYear(), endTime.getMonth(), endTime.getDate());
-      const diffDays = Math.round((endZero - startZero) / (1000 * 60 * 60 * 24));
-
-      let badgeText = "Hoje";
-      if (diffDays === 1) badgeText = "Amanhã";
-      else if (diffDays > 1) badgeText = `Em ${diffDays} dias`;
-
-      document.getElementById('res-badge').innerText = badgeText;
-
-      // Análise IA de Horário
-      const endHour = endTime.getHours();
-      const aiBadge = document.getElementById('res-ai-badge');
-      if (totalMs > 0) {
-        aiBadge.style.display = 'inline-block';
-        if (endHour >= 23 || endHour < 7) {
-          aiBadge.style.background = 'rgba(230, 57, 70, 0.2)';
-          aiBadge.style.color = '#e63946';
-          aiBadge.innerText = '⚠️ Término na Madrugada';
-        } else if ((endHour >= 7 && endHour <= 9) || (endHour >= 18 && endHour <= 22)) {
-          aiBadge.style.background = 'rgba(82, 183, 136, 0.2)';
-          aiBadge.style.color = '#74c69d';
-          aiBadge.innerText = '💡 Horário Excelente!';
-        } else {
-          aiBadge.style.background = 'rgba(255, 183, 3, 0.2)';
-          aiBadge.style.color = '#ffb703';
-          aiBadge.innerText = 'ℹ️ Término durante o dia';
-        }
-      } else {
-        aiBadge.style.display = 'none';
-      }
-    }
-
-    /* Funções do Modal JSON */
     function openJsonModal() { document.getElementById('json-modal').style.display = 'flex'; }
     function closeJsonModal() { document.getElementById('json-modal').style.display = 'none'; }
-    
+
     function importJSON() {
       try {
         const raw = document.getElementById('json-input').value;
         const data = JSON.parse(raw);
-        let maxTimer = 0;
+        const activeItems = [];
 
-        // Procura maior timer de construção ativo
-        if (data.buildings) {
-          data.buildings.forEach(b => { if (b.timer && b.timer > maxTimer) maxTimer = b.timer; });
-        }
+        // 1. Varrer Edifícios (Vila Principal & Base do Construtor)
+        const allBuildings = [...(data.buildings || []), ...(data.buildings2 || [])];
+        allBuildings.forEach(b => {
+          if (b.timer && b.timer > 0) {
+            const name = BUILDING_NAMES[b.data] || `Edifício (${b.data})`;
+            activeItems.push({ name, timer: b.timer });
+          }
+        });
 
-        if (maxTimer > 0) {
-          const totalSec = maxTimer;
-          const d = Math.floor(totalSec / 86400);
-          const h = Math.floor((totalSec % 86400) / 3600);
-          const m = Math.floor((totalSec % 3600) / 60);
-          const s = totalSec % 60;
+        // 2. Varrer Laboratório (Tropas)
+        const allUnits = [...(data.units || []), ...(data.units2 || [])];
+        allUnits.forEach(u => {
+          if (u.timer && u.timer > 0) {
+            const name = BUILDING_NAMES[u.data] || `Laboratório (ID ${u.data})`;
+            activeItems.push({ name, timer: u.timer });
+          }
+        });
 
-          document.getElementById('duration-d').value = d;
-          document.getElementById('duration-h').value = h;
-          document.getElementById('duration-m').value = m;
-          document.getElementById('duration-s').value = s;
+        // 3. Varrer Heróis
+        const allHeroes = [...(data.heroes || []), ...(data.heroes2 || [])];
+        allHeroes.forEach(h => {
+          if (h.timer && h.timer > 0) {
+            const name = BUILDING_NAMES[h.data] || `Evolução Herói (ID ${h.data})`;
+            activeItems.push({ name, timer: h.timer });
+          }
+        });
 
-          calculate();
-          closeJsonModal();
-        } else {
-          alert('Nenhum timer ativo encontrado no JSON!');
-        }
+        renderBuilderList(activeItems);
+        closeJsonModal();
       } catch (e) {
-        alert('JSON inválido! Verifique o texto colado.');
+        alert('Código JSON inválido ou mal formatado!');
       }
+    }
+
+    function renderBuilderList(items) {
+      const container = document.getElementById('builder-list-container');
+      const countLabel = document.getElementById('active-count');
+
+      if (items.length === 0) {
+        container.innerHTML = `<div style="text-align: center; color: var(--text-sub); padding: 20px 0;">Nenhuma obra ativa encontrada no JSON.</div>`;
+        countLabel.innerText = "(0 encontradas)";
+        return;
+      }
+
+      // Ordenar do timer mais curto para o mais longo
+      items.sort((a, b) => a.timer - b.timer);
+      countLabel.innerText = `(${items.length} ativas)`;
+
+      const now = Date.now();
+      let html = '';
+
+      items.forEach(item => {
+        const endTime = new Date(now + item.timer * 1000);
+        const timeStr = endTime.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+        const dateStr = endTime.toLocaleDateString('pt-BR', { weekday: 'short', day: '2-digit', month: '2-digit' });
+
+        const h = Math.floor(item.timer / 3600);
+        const m = Math.floor((item.timer % 3600) / 60);
+        let durationText = `${h}h ${m}m restantes`;
+        if (h >= 24) {
+          const d = Math.floor(h / 24);
+          const remH = h % 24;
+          durationText = `${d}d ${remH}h restantes`;
+        }
+
+        const endHour = endTime.getHours();
+        let badgeHtml = '';
+        if (endHour >= 23 || endHour < 7) {
+          badgeHtml = `<span class="builder-badge badge-night">⚠️ Madrugada (${timeStr})</span>`;
+        } else if ((endHour >= 7 && endHour <= 9) || (endHour >= 18 && endHour <= 22)) {
+          badgeHtml = `<span class="builder-badge badge-ideal">💡 Horário Ideal (${timeStr})</span>`;
+        } else {
+          badgeHtml = `<span class="builder-badge badge-day">ℹ️ Término às ${timeStr}</span>`;
+        }
+
+        html += `
+          <div class="builder-card">
+            <div class="builder-info">
+              <span class="builder-title">${item.name}</span>
+              <span class="builder-meta">${durationText} • ${dateStr}</span>
+            </div>
+            <div class="builder-time-group">
+              <div class="builder-end-time">${timeStr}</div>
+              ${badgeHtml}
+            </div>
+          </div>
+        `;
+      });
+
+      container.innerHTML = html;
     }
 
     if ('serviceWorker' in navigator) {
@@ -523,9 +390,6 @@
         navigator.serviceWorker.register('sw.js').catch(err => console.log('SW err:', err));
       });
     }
-
-    calculate();
-    setInterval(() => { if(mode === 'now') calculate(); }, 1000);
   </script>
 </body>
 </html>
